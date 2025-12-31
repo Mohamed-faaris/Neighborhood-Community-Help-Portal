@@ -1,10 +1,10 @@
 import { Component, inject, effect, viewChild, ElementRef, OnDestroy, computed } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 import { RequestCardComponent } from './request-card.component';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
-import { User } from '../../shared/types';
+import { User } from '../../../shared/types';
 
 @Component({
   selector: 'app-dashboard',
@@ -72,7 +72,7 @@ import { User } from '../../shared/types';
                       <tr class="hover:bg-slate-50/50">
                         <td class="p-4 font-bold text-slate-700">{{helper.name}}</td>
                         <td class="p-4 text-slate-600">{{helper.email}}</td>
-                        <td class="p-4 text-slate-600">{{helper.fullAddress}}</td>
+                        <td class="p-4 text-slate-600">{{helper.full_address}}</td>
                         <td class="p-4 text-center">
                           @if (helper.isApproved) {
                              <span class="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">Approved</span>

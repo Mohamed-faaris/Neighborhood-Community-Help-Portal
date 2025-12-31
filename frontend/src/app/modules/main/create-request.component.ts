@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-create-request',
@@ -141,7 +141,7 @@ export class CreateRequestComponent {
 
     // Auto-fill address from profile
     if (user) {
-      this.form.patchValue({ fullAddress: user.fullAddress });
+      this.form.patchValue({ fullAddress: user.full_address });
     }
   }
 

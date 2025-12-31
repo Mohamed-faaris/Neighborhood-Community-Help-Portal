@@ -1,7 +1,7 @@
 import { Component, input, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HelpRequest, RequestStatus, User } from '../../shared/types';
-import { DataService } from '../services/data.service';
+import { HelpRequest, RequestStatus, User } from '../../../shared/types';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-request-card',
@@ -73,7 +73,7 @@ import { DataService } from '../services/data.service';
           <!-- Requester's View for Offers -->
           @if (isRequesterOwner() && request().status === 'offered') {
             <div class="mb-3">
-              <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Helpers Available ({{request().offers.length}})</h4>
+              <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Helpers Available ({{request().offers?.length || 0}})</h4>
               <div class="space-y-2 max-h-24 overflow-y-auto">
                 @for(offer of request().offers; track offer.helperId) {
                    <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100">
@@ -89,11 +89,11 @@ import { DataService } from '../services/data.service';
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <div class="h-8 w-8 rounded-full bg-gradient-to-br from-hive-yellow-50 to-white flex items-center justify-center text-xs font-bold text-amber-700 ring-1 ring-amber-100 shadow-sm">
-                  {{ request().requesterName.charAt(0) }}
+                  {{ request().requesterName?.charAt(0) || '?' }}
                 </div>
                 <div>
                   <span class="text-[9px] font-bold text-slate-400 uppercase leading-none">By</span>
-                  <span class="text-[10px] font-bold text-slate-700 truncate max-w-[80px] leading-none">{{ request().requesterName.split(' ')[0] }}</span>
+                  <span class="text-[10px] font-bold text-slate-700 truncate max-w-[80px] leading-none">{{ (request().requesterName?.split(' ') || [])[0] || 'Unknown' }}</span>
                 </div>
             </div>
             
@@ -169,7 +169,7 @@ export class RequestCardComponent {
   hasOffered = computed(() => {
     const user = this.currentUser();
     if (!user) return false;
-    return this.request().offers.some(o => o.helperId === user.id);
+    return this.request().offers?.some(o => o.helperId === user.id) || false;
   });
 
   getActionLabel(): string | null {
@@ -212,11 +212,11 @@ export class RequestCardComponent {
       }
       if (status === 'accepted') {
         console.log('Starting task');
-        this.setStatus('in_progress');
+        this.setStatus(RequestStatus.IN_PROGRESS);
       }
       if (status === 'in_progress') {
         console.log('Completing task');
-        this.setStatus('completed');
+        this.setStatus(RequestStatus.COMPLETED);
       }
     }
   }

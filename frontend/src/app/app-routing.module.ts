@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
-import { ResidentGuard } from './guards/requester.guard';
-import { HelperGuard } from './guards/helper.guard';
-import { LoginComponent } from './components/login.component';
-import { RegisterComponent } from './components/register.component';
-import { DashboardComponent } from './components/dashboard.component';
-import { CreateRequestComponent } from './components/create-request.component';
-import { LandingComponent } from './components/landing.component';
+import { AuthGuard } from './core/auth.guard';
+import { ResidentGuard } from './core/requester.guard';
+import { HelperGuard } from './core/helper.guard';
+import { LoginComponent } from './modules/main/login.component';
+import { RegisterComponent } from './modules/main/register.component';
+import { DashboardComponent } from './modules/main/dashboard.component';
+import { CreateRequestComponent } from './modules/main/create-request.component';
+import { LandingComponent } from './modules/main/landing.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },

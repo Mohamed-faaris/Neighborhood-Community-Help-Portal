@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [RouterLink, CommonModule],
   template: `
     <nav class="absolute top-0 left-0 w-full z-50 bg-transparent pt-6 px-6">

@@ -1,7 +1,7 @@
 
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User, HelpRequest, RequestStatus } from '../../../../shared/types';
+import { User, HelpRequest, RequestStatus } from '../../shared/types';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
