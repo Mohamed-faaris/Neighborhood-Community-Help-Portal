@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # MariaDB Database (MySQL-compatible, Alpine-based)
   mysql:
-    image: mariadb:11-alpine
+    image: alpine/mariadb:latest
     container_name: neighborhood-mysql
     restart: unless-stopped
     environment:
