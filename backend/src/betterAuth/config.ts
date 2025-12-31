@@ -1,9 +1,8 @@
 import { betterAuth } from 'better-auth';
-import { mysqlAdapter } from 'better-auth/adapters/mysql2';
 import pool from '../config/database';
 
 export const auth = betterAuth({
-  database: mysqlAdapter(pool),
+  database: pool,
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
