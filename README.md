@@ -5,6 +5,7 @@ A full-stack web application connecting neighbors who need help with those willi
 ## 🌟 Features
 
 ### For Requesters (Residents)
+
 - **Create Help Requests** with detailed information:
   - Title and description
   - Category (General, Plumbing, Electrical, Grocery, etc.)
@@ -19,6 +20,7 @@ A full-stack web application connecting neighbors who need help with those willi
 - **Auto-approved** upon registration
 
 ### For Helpers
+
 - **Browse Available Requests** in the community
 - **Make Offers** to help with specific requests
 - **Update Status** (Start Task, Mark Complete)
@@ -29,6 +31,7 @@ A full-stack web application connecting neighbors who need help with those willi
 - **Requires Admin Approval** before offering help
 
 ### For Admins
+
 - **Approve Helpers** who register
 - **View All Requests** across the platform
 - **Manage Requests** (delete if needed)
@@ -36,6 +39,7 @@ A full-stack web application connecting neighbors who need help with those willi
 - **User Management** capabilities
 
 ### General Features
+
 - **BetterAuth Authentication** with secure session management
 - **Session Persistence** - stay logged in across page refreshes
 - **Role-Based Access Control** (Requester, Helper, Admin)
@@ -47,6 +51,7 @@ A full-stack web application connecting neighbors who need help with those willi
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Angular 18** - Modern web framework with standalone components
 - **TypeScript** - Type-safe development
 - **Bootstrap 5** - Responsive CSS framework
@@ -54,6 +59,7 @@ A full-stack web application connecting neighbors who need help with those willi
 - **Signals** - State management
 
 ### Backend
+
 - **Node.js** - Runtime environment
 - **GraphQL** - API query language
 - **Apollo Server Express** - GraphQL server
@@ -64,6 +70,7 @@ A full-stack web application connecting neighbors who need help with those willi
 - **ts-node** - TypeScript execution
 
 ### Database
+
 - **MySQL** - Relational database
 - **2-Table Design**:
   - Users (with roles and approval status)
@@ -78,6 +85,7 @@ A full-stack web application connecting neighbors who need help with those willi
 ## 🚀 Setup Instructions
 
 ### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd capstone
@@ -86,6 +94,7 @@ cd capstone
 ### 2. Database Setup
 
 **Create Database:**
+
 ```bash
 mysql -u root -p
 CREATE DATABASE neighborhood_portal;
@@ -93,6 +102,7 @@ EXIT;
 ```
 
 **Import Schema:**
+
 ```bash
 cd backend/database
 mysql -u root -p neighborhood_portal < schema.sql
@@ -101,6 +111,7 @@ mysql -u root -p neighborhood_portal < schema.sql
 ### 3. Backend Setup
 
 **Install Dependencies:**
+
 ```bash
 cd backend
 npm install
@@ -108,6 +119,7 @@ npm install
 
 **Configure Environment:**
 Create `.env` file in `backend/` directory:
+
 ```env
 PORT=3001
 DB_HOST=localhost
@@ -119,36 +131,43 @@ NODE_ENV=development
 ```
 
 **Start Backend:**
+
 ```bash
 npm run dev
 ```
-Backend runs on http://localhost:3001
+
+Backend runs on <http://localhost:3001>
 
 ### 4. Frontend Setup
 
 **Install Dependencies:**
+
 ```bash
 cd frontend
 npm install
 ```
 
 **Start Frontend:**
+
 ```bash
 npm start
 # or
 ng serve
 ```
-Frontend runs on http://localhost:4200
+
+Frontend runs on <http://localhost:4200>
 
 ## 👥 User Accounts
 
 ### Demo Accounts (from schema.sql)
-- **Requester**: alice@test.com / password
-- **Helper**: bob@test.com / password
-- **Admin**: admin@portal.com / password
+
+- **Requester**: <alice@test.com> / password
+- **Helper**: <bob@test.com> / password
+- **Admin**: <admin@portal.com> / password
 
 ### Create New Account
-1. Go to http://localhost:4200/register
+
+1. Go to <http://localhost:4200/register>
 2. Fill in:
    - Name
    - Email
@@ -162,6 +181,7 @@ Frontend runs on http://localhost:4200
 ## 📖 How to Use
 
 ### Creating a Help Request (Requester)
+
 1. Login as a requester
 2. Navigate to Dashboard
 3. Click "+ Create Request"
@@ -177,24 +197,28 @@ Frontend runs on http://localhost:4200
 5. Click "POST REQUEST"
 
 ### Offering Help (Helper)
+
 1. Login as an approved helper
 2. Browse "Available Requests"
 3. Click "Offer Help" on a request
 4. Wait for requester to accept your offer
 
 ### Accepting Help (Requester)
+
 1. View your request with offers
 2. Review helper profiles
 3. Click "Accept" on preferred helper
 4. Request status changes to "Accepted"
 
 ### Completing Tasks (Helper)
+
 1. View "My Accepted Tasks"
 2. Click "Start Task" when beginning
 3. Click "Finish Task" when complete
 4. Request shows as "Completed"
 
 ### Approving Helpers (Admin)
+
 1. Login as admin
 2. View "Pending Helpers" section
 3. Click "Approve" next to helper's name
@@ -266,6 +290,7 @@ neighborhood-community-help-portal/
 ## 🗄️ Database Schema
 
 ### Users Table
+
 ```sql
 - id (PRIMARY KEY)
 - name
@@ -281,6 +306,7 @@ neighborhood-community-help-portal/
 ```
 
 ### HelpRequests Table
+
 ```sql
 - id (PRIMARY KEY)
 - resident_id (FOREIGN KEY → Users)
@@ -310,6 +336,7 @@ neighborhood-community-help-portal/
 The backend provides a single GraphQL endpoint at `/graphql` with full type safety and validation.
 
 ### Authentication Mutations
+
 ```graphql
 mutation Register($input: CreateUserInput!) {
   register(input: $input) {
@@ -347,6 +374,7 @@ mutation Login($input: LoginInput!) {
 ```
 
 ### User Queries & Mutations
+
 ```graphql
 query GetUsers {
   users {
@@ -388,6 +416,7 @@ mutation ApproveHelper($id: ID!) {
 ```
 
 ### Request Queries & Mutations
+
 ```graphql
 query GetRequests($status: RequestStatus, $category: String, $limit: Int, $offset: Int) {
   requests(status: $status, category: $category, limit: $limit, offset: $offset) {
@@ -450,6 +479,7 @@ mutation MakeOffer($requestId: ID!, $input: MakeOfferInput!) {
 ```
 
 ### Statistics & Admin Queries
+
 ```graphql
 query GetStats {
   stats {
@@ -497,26 +527,31 @@ query GetUnapprovedHelpers {
 ## 🐛 Troubleshooting
 
 ### Backend won't start
+
 - Check MySQL is running: `mysql -u root -p`
 - Verify `.env` credentials are correct
 - Ensure port 3001 is not in use
 
 ### Frontend won't start
+
 - Clear node_modules: `rm -rf node_modules && npm install`
 - Check port 4200 is available
 - Verify Angular CLI is installed: `npm install -g @angular/cli`
 
 ### Cannot login
+
 - Check password is at least 6 characters
 - For helpers, verify admin approval
 - Clear localStorage and try again
 
 ### 401 Unauthorized errors
+
 - Token may be expired (7 days)
 - Logout and login again
 - Check if JWT_SECRET matches between sessions
 
 ### Data not displaying
+
 - Check browser console for errors
 - Verify backend is running
 - Check network tab for API responses
@@ -526,18 +561,21 @@ query GetUnapprovedHelpers {
 ### Architecture Overview
 
 #### Backend Architecture
+
 - **GraphQL**: Single API endpoint with type-safe queries and mutations
 - **BetterAuth**: Modern authentication with session management
 - **Zod**: Runtime type validation for all inputs
 - **Clean Architecture**: Separated concerns with dedicated folders for each responsibility
 
 #### Frontend Architecture
+
 - **Angular 18**: Modern framework with standalone components
 - **Bootstrap 5**: Responsive CSS framework
 - **Feature Modules**: Organized components by feature
 - **Signal-based State**: Reactive state management
 
 ### Code Conventions
+
 - **Backend**: snake_case for database fields, camelCase for TypeScript
 - **Frontend**: camelCase throughout
 - **GraphQL**: camelCase for field names, PascalCase for types
@@ -545,6 +583,7 @@ query GetUnapprovedHelpers {
 - **Error Handling**: Structured error responses with proper HTTP codes
 
 ### Key Design Decisions
+
 1. **GraphQL over REST**: Single, efficient API with exact data fetching
 2. **BetterAuth**: Modern auth library replacing custom JWT implementation
 3. **Zod Validation**: Runtime type safety and input sanitization
